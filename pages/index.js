@@ -4,8 +4,8 @@ import { Divider } from 'antd';
 
 export default () => (
 	<>
-		<h1 style={{marginBottom: 8}}>Sample </h1>
-		<p style={{margin: 0, color: "#aaaaaa"}}>Nextjs + Web3 + Antd</p>
+		<h1 style={{ marginBottom: 8 }}>Sample </h1>
+		<p style={{ margin: 0, color: '#aaaaaa' }}>Nextjs + Web3 + Antd</p>
 		<Divider />
 		<ul style={{ padding: 24 }}>
 			<li>
@@ -33,6 +33,13 @@ export default () => (
 					<a>Code</a>
 				</Link>
 			</li>
+
+			<li>
+				<Link href="/klaytn">
+					<a>Klaytn</a>
+				</Link>
+			</li>
+
 		</ul>
 	</>
 );
