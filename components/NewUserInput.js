@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 
-class NewUserInputComp extends React.Component {
+class  NewUserInputComp extends React.Component {
 	onInputChangeHandle = e => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
