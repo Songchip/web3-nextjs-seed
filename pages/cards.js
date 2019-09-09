@@ -106,7 +106,7 @@ const MintableCard = ({ abi, contractAddress }) => {
 		const { toPeb } = context.getUtils();
 
 		const { name, address } = values;
-		const transaction = await executeMintCart({
+		const transaction = await executeMintCard({
 			contract,
 			name,
 			address,
