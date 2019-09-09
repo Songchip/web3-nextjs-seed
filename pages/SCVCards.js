@@ -120,7 +120,7 @@ const MintableCard = ({ abi, contractAddress }) => {
 		<>
 			{/*<PageHeader title={'Mint Cards'} />*/}
 			<div style={{ paddingTop: 24 }}>
-				<Title>Mint Cards</Title>
+				<Title>SCV Cards</Title>
 				<Text>Account: {account.address}</Text>
 				<br />
 				<Text>Contract Address: {contractAddress}</Text>
