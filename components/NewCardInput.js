@@ -17,7 +17,7 @@ class NewCardInputComp extends React.Component {
 		return (
 			<Form layout="vertical" onSubmit={this.onInputChangeHandle} style={{ marginTop: 32 }}>
 				<Form.Item>{getFieldDecorator('name', {})(<Input placeholder="Name" />)}</Form.Item>
-				<Form.Item>{getFieldDecorator('balance', {})(<Input placeholder="Balance" />)}</Form.Item>
+				<Form.Item>{getFieldDecorator('balance', {})(<InputNumber placeholder="Balance" />)}</Form.Item>
 				<Form.Item>
 					{getFieldDecorator('address', {})(<Input placeholder="Address" />)}
 				</Form.Item>
