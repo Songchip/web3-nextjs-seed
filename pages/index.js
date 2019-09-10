@@ -44,9 +44,10 @@ export default () => (
 					<a>Mint Cards</a>
 				</Link>
 			</li>
+
 			<li>
-				<Link href="/SCVCards">
-					<a>SCV Cards</a>
+				<Link href="/MARFCard">
+					<a>MARFCard</a>
 				</Link>
 			</li>
 		</ul>
