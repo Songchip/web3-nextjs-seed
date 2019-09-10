@@ -22,6 +22,8 @@ const connectors = { MetaMask };
 class MyApp extends App {
 	render() {
 		const { Component, pageProps } = this.props;
+
+
 		return (
 			<ThemeProvider theme={defaultTheme}>
 				<Web3Provider connectors={connectors} libraryName={'ethers.js'}>
