@@ -13,8 +13,21 @@ import getConfig from 'next/config';
 // Only holds serverRuntimeConfig and publicRuntimeConfig from next.config.js nothing else.
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
-function deposit({ contract, amount, from }) {
-	return contract.methods.mintCard(amount).send({ from, gas: '300000' });
+
+function deposit({contract, amount, from}){
+	return contract.methods.deposit(amount).send({ from, gas: '300000' });
+}
+
+function withdraw({contract, amount,  from}) {
+	return contract.methods.withdraw(amount).send({ from, gas: '300000' });
+}
+
+function transfer({contract, to, amount, from}){
+	return contract.methods.transfer(to, amount).send({ from, gas: '300000' });
+}
+
+function getBalance({contract, from}){
+	return contract.methods.getBalance(from).send({ from, gas: '300000' });
 }
 
 const FLUIBank = ({ privateKey, abi, contractAddress }) => {
