@@ -24,7 +24,7 @@ function deposit({ contract, amount, from }) {
 	return contract.methods.deposit(amount).send({ value: amount, from, gas: '300000' });
 }
 function withdraw({ contract, amount, from }) {
-	return contract.methods.withdraw(amount).send({ from, gas: '300000' });
+	return contract.methods.withdraw(amount).send({value: amount, from, gas: '300000' });
 }
 function transfer({ contract, to, amount, from }) {
 	return contract.methods.transfer(to, amount).send({ from, gas: '300000' });
