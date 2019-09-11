@@ -44,7 +44,44 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 	const [lastTransaction, setLastTransaction] = useState({});
 
-	async function onSubmit(values) {
+	async function onDepositSubmit(values) {
+		console.log('onDepositSubmit');
+		if (context === null) {
+			alert('No provider');
+			return;
+		}
+
+		const { toPeb } = context.getUtils();
+
+		const { amount, address } = values;
+		const transaction = await deposit({
+			contract,
+			amount: toPeb(amount, 'klay'),
+			from: account.address
+		});
+
+		setLastTransaction(transaction);
+	}
+	async function onWithdrawSubmit(values) {
+		console.log('onSubmit');
+		if (context === null) {
+			alert('No provider');
+			return;
+		}
+
+		const { toPeb } = context.getUtils();
+
+		const { name, address } = values;
+		const transaction = await deposit({
+			contract,
+			name,
+			address,
+			from: account.address
+		});
+
+		setLastTransaction(transaction);
+	}
+	async function onTransferSubmit(values) {
 		console.log('onSubmit');
 		if (context === null) {
 			alert('No provider');
@@ -80,17 +117,17 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 			<Row style={rowStyle} gutter={gutter} type="flex">
 				<Col style={colStyle} span={8}>
 					<h3> Deposit Func </h3>
-					<DepositInput onSubmit={onSubmit} />
+					<DepositInput onSubmit={onDepositSubmit} />
 				</Col>
 
 				<Col style={colStyle} span={8}>
 					<h3> Withdraw Func </h3>
-					<WithdrawInput onSubmit={onSubmit} />
+					<WithdrawInput onSubmit={onWithdrawSubmit} />
 				</Col>
 
 				<Col style={colStyle} span={8}>
 					<h3> Transfer Func </h3>
-					<TransferInput onSubmit={onSubmit} />
+					<TransferInput onSubmit={onTransferSubmit} />
 				</Col>
 			</Row>
 
