@@ -44,8 +44,9 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 	const [lastTransaction, setLastTransaction] = useState({});
 
+	// onSubmit -> onDepositSubmitHandle
 	async function onDepositSubmit(values) {
-		console.log('onDepositSubmit');
+		console.log('onDepositSubmit', values);
 		if (context === null) {
 			alert('No provider');
 			return;
@@ -53,17 +54,21 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 		const { toPeb } = context.getUtils();
 
-		const { amount, address } = values;
-		const transaction = await deposit({
-			contract,
-			amount: toPeb(amount, 'klay'),
-			from: account.address
-		});
+		// const { amount } = values;
+		const amount = parseInt(values.amount * 1000); // decimal to integer
 
-		setLastTransaction(transaction);
+		// const transaction = await deposit({
+		// 	contract,
+		// 	amount: toPeb(amount, 'mKLAY'),
+		// 	from: account.address
+		// });
+		//
+		// setLastTransaction(transaction);
 	}
+
+	// onSubmit -> onWithdrawSubmit
 	async function onWithdrawSubmit(values) {
-		console.log('onSubmit');
+		console.log('onWithdrawSubmit', values);
 		if (context === null) {
 			alert('No provider');
 			return;
@@ -71,18 +76,22 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 		const { toPeb } = context.getUtils();
 
-		const { name, address } = values;
-		const transaction = await deposit({
-			contract,
-			name,
-			address,
-			from: account.address
-		});
+		// const { amount } = values;
+		const amount = parseInt(values.amount * 1000); // decimal to integer
 
-		setLastTransaction(transaction);
+		// const transaction = await withdraw({
+		// 	contract,
+		// 	name,
+		// 	address,
+		// 	from: account.address
+		// });
+		//
+		// setLastTransaction(transaction);
 	}
+
+	// onSubmit -> onTransferSubmit
 	async function onTransferSubmit(values) {
-		console.log('onSubmit');
+		console.log('onTransferSubmit', values);
 		if (context === null) {
 			alert('No provider');
 			return;
@@ -90,15 +99,17 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 		const { toPeb } = context.getUtils();
 
-		const { name, address } = values;
-		const transaction = await deposit({
-			contract,
-			name,
-			address,
-			from: account.address
-		});
-
-		setLastTransaction(transaction);
+		const { to } = values;
+		// const { amount } = values;
+		const amount = parseInt(values.amount * 1000); // decimal to integer
+		// const transaction = await transfer({
+		// 	contract,
+		// 	to,
+		// 	amount,
+		// 	from: account.address
+		// });
+		//
+		// setLastTransaction(transaction);
 	}
 
 	const { rowStyle, colStyle, gutter } = basicStyle;
