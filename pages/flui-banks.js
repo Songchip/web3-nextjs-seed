@@ -21,7 +21,7 @@ const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 // }
 
 function deposit({ contract, amount, from }) {
-	return contract.methods.deposit(amount).send({ from, gas: '300000' });
+	return contract.methods.deposit(amount).send({ value: from, gas: '300000' });
 }
 function withdraw({ contract, amount, from }) {
 	return contract.methods.withdraw(amount).send({ from, gas: '300000' });
@@ -100,16 +100,15 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 		const { toPeb } = context.getUtils();
 
 		const { to } = values;
-		// const { amount } = values;
 		const amount = parseInt(values.amount * 1000); // decimal to integer
-		// const transaction = await transfer({
-		// 	contract,
-		// 	to,
-		// 	amount,
-		// 	from: account.address
-		// });
-		//
-		// setLastTransaction(transaction);
+		const transaction = await transfer({
+			contract,
+			to,
+			amount,
+			from: account.address
+		});
+
+		setLastTransaction(transaction);
 	}
 
 	const { rowStyle, colStyle, gutter } = basicStyle;
