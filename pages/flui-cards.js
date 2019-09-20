@@ -48,7 +48,7 @@ async function updateOwner(contract, setOwner) {
 	setOwner(owner);
 }
 
-const MintableCard = ({ abi, contractAddress }) => {
+const FLUICard = ({ abi, contractAddress }) => {
 	const context = useCaver();
 	const [account, setAccount] = useState('');
 
@@ -152,17 +152,36 @@ const MintableCard = ({ abi, contractAddress }) => {
 		</>
 	);
 };
-MintableCard.getInitialProps = async ({ pathname }) => {
-	console.log('MintableCard::getInitialProps', pathname);
-	const abi = await axios.get(process.env.CONTRACT_ABI_JSON).then(res => {
+
+const NoSSRFLUICard = dynamic(
+	() => {
+		return Promise.resolve(FLUICard);
+	},
+	{
+		ssr: false
+	}
+);
+
+const FLUICardPage = props => {
+	return (
+		<>
+			<NoSSRFLUICard {...props} />
+		</>
+	);
+};
+
+FLUICardPage.getInitialProps = async ({ pathname }) => {
+	const CONTRACT_ABI_JSON = process.env.FLUI_CARD_CONTRACT_ABI_JSON;
+	const CONTRACT_ADDRESS_JSON = process.env.FLUI_CARD_CONTRACT_ADDRESS_JSON;
+
+	const privateKey = process.env.KLAYTN_PRIVATE_KEY;
+	const abi = await axios.get(CONTRACT_ABI_JSON).then(res => {
 		return res.data;
 	});
 
-	const { contractAddress } = await axios
-		.get(process.env.CONTRACT_ADDRESS_JSON)
-		.then(res => res.data);
+	const { contractAddress } = await axios.get(CONTRACT_ADDRESS_JSON).then(res => res.data);
 
-	return { abi, contractAddress };
+	return { privateKey, abi, contractAddress };
 };
 
-export default MintableCard;
+export default FLUICardPage;

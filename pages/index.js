@@ -9,11 +9,6 @@ export default () => (
 		<Divider />
 		<ul style={{ padding: 24 }}>
 			<li>
-				<Link href="/account">
-					<a>Account</a>
-				</Link>
-			</li>
-			<li>
 				<Link href="/hooks">
 					<a>Hooks sample</a>
 				</Link>
@@ -50,12 +45,6 @@ export default () => (
 				</Link>
 			</li>
 			<li>
-				<Link href="/MARFCard">
-					<a>MARFCard</a>
-				</Link>
-			</li>
-
-			<li>
 				<Link href="/flui-cards">
 					<a>FLUI Cards</a>
 				</Link>
@@ -72,7 +61,6 @@ export default () => (
 					<a>FLUI Banks</a>
 				</Link>
 			</li>
-
 		</ul>
 	</>
 );
